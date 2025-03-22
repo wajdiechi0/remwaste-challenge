@@ -14,61 +14,68 @@ export const SkipComponent = ({
 }: SkipComponentProps): JSX.Element => {
   return (
     <div
-      className={`relative rounded-xl bg-dark-700 p-6 cursor-pointer duration-200  ${
+      className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-dark-700 to-dark-800 p-6 cursor-pointer duration-300 ${
         isSelected
-          ? "ring-2 ring-blue-600"
-          : "ring-0 hover:ring-2 hover:ring-blue-700"
+          ? "ring-2 ring-blue-500 shadow-lg shadow-blue-500/20"
+          : "hover:ring-2 hover:ring-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10"
       }`}
       onClick={() => onSelect(skip)}
     >
-      <div className="relative w-full h-48 mb-6">
-        {isSelected && (
-          <div className="absolute -top-1 -right-1 w-[2px] h-2 bg-blue-600 rotate-45" />
-        )}
-        <img
-          src="/skip-sample.jpeg"
-          alt={`${skip.size} Yard Skip`}
-          className="w-full h-full object-cover  rounded-lg"
-        />
-        <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs xs:text-sm font-medium">
-          {skip.size} Yards
-        </div>
-        {skip.isPrivateOnly && (
-          <div className="absolute bottom-4 left-4 flex items-center text-yellow-500 text-xs bg-black px-2 py-1 rounded-lg">
-            <HiOutlineExclamationTriangle className="mr-2 w-4 h-4" />
-            <span>Private Property Only</span>
+      {/* Content */}
+      <div className="relative">
+        <div className="relative w-full h-52 mb-6 rounded-xl group-hover:scale-[1.02] duration-300">
+          <img
+            src="/skip-sample.jpeg"
+            alt={`${skip.size} Yard Skip`}
+            className="w-full h-full object-cover rounded-xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl" />
+
+          <div className="absolute top-4 right-4 bg-blue-500 text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg">
+            {skip.size} Yards
           </div>
-        )}
-      </div>
 
-      <div className="flex flex-col">
-        <span className="text-lg xs:text-xl font-bold text-white">
-          {skip.size} Yard Skip
-        </span>
+          {skip.isPrivateOnly && (
+            <div className="absolute bottom-4 left-4 flex items-center bg-black/80 backdrop-blur-sm text-yellow-400 text-sm px-3 py-1.5 rounded-lg">
+              <HiOutlineExclamationTriangle className="mr-2 w-5 h-5" />
+              <span>Private Property Only</span>
+            </div>
+          )}
+        </div>
 
-        <span className="text-xs xs:text-sm text-gray-400 my-2">
-          {skip.hirePeriod} day hire period
-        </span>
+        {/* Skip Details */}
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg xs:text-xl font-bold text-white mb-1">
+              {skip.size} Yard Skip
+            </h3>
+            <p className="text-xs xs:text-sm text-gray-400">
+              {skip.hirePeriod} day hire period
+            </p>
+          </div>
 
-        <div className="mt-3">
-          <span className="text-base xs:text-2xl font-bold text-blue-600">
-            £{skip.pricePerWeek}
-          </span>
-          <span className="font-normal text-xs xs:text-sm text-gray-400 ml-2">
-            per week
-          </span>
+          <div className="flex items-baseline">
+            <span className="text-base xs:text-2xl font-bold text-blue-400">
+              £{skip.pricePerWeek}
+            </span>
+            <span className="ml-2 text-xs xs:text-sm text-gray-400">per week</span>
+          </div>
+
+          <button
+            className={`w-full py-3 rounded-xl font-medium text-xs xs:text-sm duration-300 ${
+              isSelected
+                ? "bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/20"
+                : "bg-dark-600 hover:bg-dark-500 text-white"
+            }`}
+          >
+            {isSelected ? "Selected" : "Select This Skip →"}
+          </button>
         </div>
       </div>
 
-      <button
-        className={`mt-3 text-white w-full py-3 rounded-lg font-medium text-xs xs:text-base ${
-          isSelected
-            ? "bg-blue-700 hover:bg-blue-600"
-            : "bg-dark-600 hover:bg-dark-400"
-        }`}
-      >
-        {isSelected ? "Selected" : "Select This Skip →"}
-      </button>
+      {isSelected && (
+        <div className="absolute top-4 -right-4 w-8 h-8 bg-blue-500 rotate-45 " />
+      )}
     </div>
   );
 };
