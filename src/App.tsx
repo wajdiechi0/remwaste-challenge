@@ -60,7 +60,7 @@ function App(): JSX.Element {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-dark-900 to-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto mb-7">
         <div className="text-center mb-12">
           <h1 className="text-lg xs:text-2xl font-bold text-white mb-4">
             Choose Your Skip Size
